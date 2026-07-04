@@ -1,0 +1,6 @@
+CREATE TABLE DeletionLog (
+    LogID INT IDENTITY(1,1) PRIMARY KEY,
+    PlayerID INT NOT NULL,
+    DeletedAt DATETIME NOT NULL,
+    Reason NVARCHAR(255) NOT NULL
+);

@@ -1,0 +1,19 @@
+Estrutura final de arquivos
+
+dashboard.php – Dashboard visual principal
+
+get_moedas.php – Puxa moedas atuais
+
+saude_status.php – Puxa HP atual
+
+saude_comprar.php – Compra poção
+
+bank_ajax.php – Depositar na poupança
+
+equip_item_ajax.php – Equipar item do inventário
+
+log_dungeon.php – Log de ataque na dungeon
+
+fetch_dungeon_log.php – Puxar últimos logs da dungeon
+
+db.php – Conexão com SQL Server

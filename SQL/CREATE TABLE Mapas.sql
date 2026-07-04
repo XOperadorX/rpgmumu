@@ -1,0 +1,6 @@
+CREATE TABLE Mapas (
+    MapaID INT IDENTITY(1,1) PRIMARY KEY,
+    Nome NVARCHAR(50),
+    Linha INT NOT NULL,
+    Dados NVARCHAR(200) NOT NULL
+);

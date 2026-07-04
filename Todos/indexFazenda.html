@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Fazenda RPG - MoedaMumu</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f2f2f2; padding: 20px; }
+        h2 { margin-top: 30px; }
+        button { margin: 5px; padding: 5px 10px; cursor: pointer; }
+        table { border-collapse: collapse; width: 50%; margin-top: 10px; }
+        th, td { border: 1px solid #999; padding: 5px 10px; text-align: center; }
+        .log { background: #fff; padding: 10px; border: 1px solid #ccc; margin-top: 10px; max-width: 500px; }
+    </style>
+</head>
+<body>
+    <h1>🏡 Fazenda RPG - MoedaMumu</h1>
+
+    <h2>💰 Comprar Semente</h2>
+    <select id="selecionaSemente"></select>
+    <button onclick="comprarSemente()">Comprar</button>
+
+    <h2>🌱 Inventário de Sementes</h2>
+    <table id="tabelaSementes">
+        <tr><th>Nome</th><th>Quantidade</th><th>Plantar</th></tr>
+    </table>
+
+    <h2>🍎 Inventário de Frutas</h2>
+    <table id="tabelaFrutas">
+        <tr><th>Nome</th><th>Quantidade</th></tr>
+    </table>
+
+    <button onclick="colherFrutas()">🌾 Colher Frutas Maduras</button>
+
+    <div class="log" id="log"></div>
+
+<script>
+async function fetchJSON(url, data = null) {
+    const options = data ? { method: 'POST', body: new URLSearchParams(data) } : {};
+    const response = await fetch(url, options);
+    return response.json();
+}
+
+// Carrega lista de frutas disponíveis para comprar
+async function carregarFrutasDisponiveis() {
+    const res = await fetchJSON('listarFrutasDisponiveis.php'); // Criar PHP que lista todas frutas do DB
+    const select = document.getElementById('selecionaSemente');
+    select.innerHTML = '';
+    res.forEach(f => {
+        const opt = document.createElement('option');
+        opt.value = f.FrutaID;
+        opt.textContent = `${f.Nome} - Preço: ${f.PrecoSemente} MoedaMumu`;
+        select.appendChild(opt);
+    });
+}
+
+// Comprar semente
+async function comprarSemente() {
+    const frutaID = document.getElementById('selecionaSemente').value;
+    const res = await fetchJSON('comprarSemente.php', { frutaID });
+    log(res.message);
+    listarSementes();
+}
+
+// Listar sementes
+async function listarSementes() {
+    const res = await fetchJSON('inventarioSementes.php');
+    const tabela = document.getElementById('tabelaSementes');
+    tabela.innerHTML = '<tr><th>Nome</th><th>Quantidade</th><th>Plantar</th></tr>';
+    res.inventario.forEach(s => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${s.Nome}</td>
+                        <td>${s.Quantidade}</td>
+                        <td><button onclick="plantarSemente(${s.FrutaID})">🌱 Plantar</button></td>`;
+        tabela.appendChild(tr);
+    });
+}
+
+// Plantar semente
+async function plantarSemente(frutaID) {
+    const res = await fetchJSON('usarSemente.php', { frutaID });
+    log(res.message);
+    listarSementes();
+}
+
+// Listar frutas
+async function listarFrutas() {
+    const res = await fetchJSON('inventarioFrutas.php');
+    const tabela = document.getElementById('tabelaFrutas');
+    tabela.innerHTML = '<tr><th>Nome</th><th>Quantidade</th></tr>';
+    res.inventario.forEach(f => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${f.Nome}</td><td>${f.Quantidade}</td>`;
+        tabela.appendChild(tr);
+    });
+}
+
+// Colher frutas maduras
+async function colherFrutas() {
+    const res = await fetchJSON('colherFrutas.php');
+    log(res.message);
+    listarFrutas();
+    listarSementes();
+}
+
+// Exibir mensagens no log
+function log(msg) {
+    const div = document.getElementById('log');
+    div.textContent = msg;
+}
+
+// Inicialização
+window.onload = () => {
+    carregarFrutasDisponiveis();
+    listarSementes();
+    listarFrutas();
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+ALTER TABLE Items
+ADD EquippedSlot NVARCHAR(20) NULL;

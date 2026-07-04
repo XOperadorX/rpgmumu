@@ -1,0 +1,5 @@
+CREATE TABLE [MumuDB].[dbo].[Codigos] (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    Codigo NVARCHAR(20) UNIQUE NOT NULL,
+    Usado BIT DEFAULT 0
+);

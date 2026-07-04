@@ -1,0 +1,46 @@
+//////////////////////////////////
+
+Exemplo de como bloquear a conta
+Supondo que sua tabela Players tenha (ou você pode adicionar) uma coluna chamada Status ou IsBanned:
+ALTER TABLE Players ADD IsBanned BIT NOT NULL DEFAULT 0;
+
+//////////////////////////////////
+
+Agora a query busca também IsBanned:
+SELECT PlayerID, PasswordHash, IsBanned FROM Players WHERE Username = ?
+Antes de validar a senha, verifica se IsBanned == 1.
+Se sim → mostra mensagem: 🚫 Sua conta está bloqueada.
+Se não → segue login normal.
+
+//////////////////////////////////
+
+🔒 Resumindo:
+Se IsBanned = 1 → bloqueia login e mostra aviso.
+Se IsBanned = 0 → login normal.
+Admin pode desbloquear com:
+Como desbloquear depois (para admin):
+UPDATE Players SET IsBanned = 0 WHERE PlayerID = 123;
+
+/////////////////////////////////////////////
+
+
+
+
+O campo Role da tabela Players foi usado para identificar admins.
+
+Se não existir, você pode criar:
+
+ALTER TABLE Players ADD Role VARCHAR(20) NOT NULL DEFAULT 'user';
+
+
+E para tornar alguém admin:
+
+UPDATE Players SET Role = 'admin' WHERE PlayerID = 1;
+
+
+Se Role = 'admin', aparece o botão 👑 Gerenciar Usuários no menu.
+
+Esse botão leva para admin_users.php que já fizemos.
+
+
+

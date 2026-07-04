@@ -1,0 +1,60 @@
+Boa! 👌 Podemos criar uma moeda exclusiva (Moeda Mumu) que aparece no seu painel e que o jogador pode ganhar gastando/refinando Items, derrotando monstros ou em dungeons.
+
+Estrutura básica:
+
+Criar uma tabela no banco para armazenar moedas por jogador.
+
+Alterar o dashboard.php para exibir a quantidade da moeda.
+
+Criar funções (como no refinamento de Items) para adicionar/remover moedas.
+
+1. Criar tabela no banco
+
+No SQL Server:
+
+CREATE TABLE Players (
+    PlayerID INT PRIMARY KEY,
+    MoedaMumu INT DEFAULT 0
+);
+
+
+PlayerID → liga com o jogador.
+
+MoedaMumu → saldo da moeda.
+
+Se já existir jogadores, inicialize com 0:
+
+INSERT INTO Players (PlayerID, MoedaMumu)
+SELECT PlayerID, 0 FROM Players
+WHERE PlayerID NOT IN (SELECT PlayerID FROM Players);
+
+2. Alterar o dashboard.php
+
+No início, depois de verificar $_SESSION['PlayerID']:
+
+// Pega saldo da Moeda Mumu
+$stmtMoeda = sqlsrv_query($conn, "SELECT MoedaMumu FROM Players WHERE PlayerID=?", [$playerID]);
+$moeda = 0;
+if($stmtMoeda && $row = sqlsrv_fetch_array($stmtMoeda, SQLSRV_FETCH_ASSOC)){
+    $moeda = $row['MoedaMumu'];
+}
+
+3. Exibir no painel
+
+No <body> (logo abaixo do <h1>), coloque:
+
+<h1>🏰 Painel Visual do Mumu RPG</h1>
+<p>Bem-vindo, aventureiro!</p>
+<p>💰 Moedas Mumu: <strong><?= $moeda ?></strong></p>
+
+4. Exemplo de uso (refinar_item_ajax.php)
+
+Quando o jogador refinar/excluir um item, você pode dar moedas:
+
+// Dá +10 moedas ao jogador
+sqlsrv_query($conn, "UPDATE Players SET MoedaMumu = MoedaMumu + 10 WHERE PlayerID=?", [$playerID]);
+
+
+E exibir na resposta AJAX:
+
+echo "Item refinado! Você ganhou +10 Moedas Mumu!";

@@ -1,0 +1,3 @@
+ItemID INT PRIMARY KEY,
+CharID INT,
+Name VARCHAR(50)

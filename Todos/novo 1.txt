@@ -1,0 +1,7 @@
+
+
+
+saude.php,saude_status.php,saude_comprar.php,adm,bank.php,criar_personagem.php,dashboard.php,db.php,del.php,del_conta.php,del_personagem.php,del_todas_conta.php,
+dung.php,equip_item_ajax.php,equip_save.php,equipar.php,equipar_item.php,equipar_item_advanced.php,equipar_item_drag.php,equipar_Items.php,export_dungeon_log.php,
+fetch_dungeon_log.php,get_moedas.php,index.php,log_dungeon.php,login.php,logout.php,personagem.php,personagens.php,refinar_item_ajax.php,register.php,saude.php,saude_comprar.php,
+saude_status.php,sell_item_ajax.php,status_personagem.php,turno.php,unequip_item_ajax.php

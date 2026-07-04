@@ -1,0 +1,11 @@
+USE [MumuDB]
+GO
+
+CREATE TABLE [dbo].[LoginHistory](
+    HistoryID INT IDENTITY(1,1) PRIMARY KEY,
+    PlayerID INT NOT NULL,
+    LoginTime DATETIME NOT NULL DEFAULT(GETDATE()),
+    LoginIP VARCHAR(45) NULL,
+    FOREIGN KEY (PlayerID) REFERENCES Players(PlayerID)
+)
+GO

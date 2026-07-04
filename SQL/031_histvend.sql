@@ -1,0 +1,6 @@
+CREATE TABLE dbo.histvend (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    PlayerID INT NOT NULL,
+    Acao NVARCHAR(200),
+    Data DATETIME DEFAULT GETDATE()
+);

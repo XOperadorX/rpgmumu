@@ -1,0 +1,12 @@
+ALTER TABLE dbo.Enemies
+ADD
+    Attack INT NOT NULL DEFAULT 0,
+    Defense INT NOT NULL DEFAULT 0,
+    MagicAttack INT NOT NULL DEFAULT 0,
+    MagicDefense INT NOT NULL DEFAULT 0,
+    Speed INT NOT NULL DEFAULT 0,
+    CritChance FLOAT NOT NULL DEFAULT 0,
+    Element NVARCHAR(50) NOT NULL DEFAULT 'Neutro',
+    DropRate FLOAT NOT NULL DEFAULT 0,
+    SpecialSkill NVARCHAR(100) NULL,
+    BehaviorType NVARCHAR(50) NULL;

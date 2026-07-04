@@ -1,0 +1,1 @@
+ALTER TABLE Characters ADD LastRestore DATETIME NULL;

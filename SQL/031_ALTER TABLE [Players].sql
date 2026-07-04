@@ -1,0 +1,3 @@
+ALTER TABLE [Players]
+ADD XP INT DEFAULT 0,
+    Nivel INT DEFAULT 1;

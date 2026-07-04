@@ -1,0 +1,7 @@
+CREATE TABLE BankHistory (
+    HistoryID INT PRIMARY KEY IDENTITY,
+    PlayerID INT FOREIGN KEY REFERENCES Players(PlayerID),
+    Tipo NVARCHAR(50),
+    Valor INT,
+    Data DATETIME DEFAULT GETDATE()
+);

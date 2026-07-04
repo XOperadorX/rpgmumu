@@ -1,0 +1,38 @@
+22:10 domingo, 28 de setembro de 2025
+
+/rpgmumu/                    ← Pasta raiz do projeto
+			│
+			├─ db.php                    ← Conexão central com SQL Server
+			├─ login.php                 ← Tela de login de jogadores/admin
+			├─ logout.php                ← Logout
+			│
+					├─ admin_dashboard.php       ← Painel principal do administrador
+					│   ├─ Botões:
+					│   │   ├─ admin_settings.php (Configurações)
+					│   │   ├─ bank/admin_bank.php (Banco)
+					│   │   ├─ admin_logs.php (Logs)
+					│   │   ├─ admin_players.php (Gerenciar jogadores)
+					│   │   ├─ admin_list.php (Lista/edição rápida de contas)
+					│   │   ├─ gera_codigo.php (Gerar códigos aleatórios)
+					│   │   └─ add_admin.php (Adicionar ADM)
+					│
+						├─ admin_players.php          ← Página de gerenciamento de jogadores
+						│   └─ players_admin_ajax.php ← AJAX para listar, atualizar, excluir jogadores
+						│
+						├─ admin_list.php             ← Lista rápida de contas / edição simples
+						│
+						├─ admin_logs.php             ← Visualização de logs do sistema
+						├─ admin_settings.php         ← Configurações gerais do RPG/servidor
+						│
+							├─ bank/
+							│   └─ admin_bank.php         ← Gerenciamento do banco dos jogadores
+							│
+								├─ assets/                   ← Recursos estáticos
+								│   ├─ css/                  ← Arquivos CSS
+								│   ├─ js/                   ← Arquivos JS
+								│   └─ images/               ← Ícones e imagens do painel
+								│
+								└─ ajax/                     ← Handlers AJAX
+									├─ add_admin_ajax.php    ← Criação/edição/exclusão de ADM via AJAX
+									└─ players_admin_ajax.php← Listar/atualizar/excluir jogadores via AJAX
+///////////////////////////////////////////////////////////////////////////////////////

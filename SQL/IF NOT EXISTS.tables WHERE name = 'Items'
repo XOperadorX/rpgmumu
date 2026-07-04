@@ -1,0 +1,10 @@
+IF NOT EXISTS (SELECT * FROM sys.tables WHERE name = 'Items' AND schema_id = SCHEMA_ID('dbo'))
+BEGIN
+    CREATE TABLE [MumuDB].[dbo].[Items] (
+        EffectID INT IDENTITY(1,1) PRIMARY KEY,
+        Categoria NVARCHAR(50) NOT NULL,
+        TipoEfeito NVARCHAR(50) NOT NULL,
+        Valor INT NOT NULL,
+        Duracao INT NULL
+    );
+END

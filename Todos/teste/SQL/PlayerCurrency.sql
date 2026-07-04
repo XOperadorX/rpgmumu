@@ -1,0 +1,22 @@
+USE [MumuDB]
+GO
+
+/****** Object:  Table [dbo].[Players]    Script Date: 21/09/2025 23:50:44 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[Players](
+	[PlayerID] [int] NOT NULL,
+	[MoedaMumu] [int] NULL DEFAULT ((0)),
+PRIMARY KEY CLUSTERED 
+(
+	[PlayerID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+

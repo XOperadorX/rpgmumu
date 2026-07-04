@@ -1,0 +1,3 @@
+ALTER TABLE Players
+ADD LastLoginIP VARCHAR(45) NULL,
+    LastLoginTime DATETIME NULL;

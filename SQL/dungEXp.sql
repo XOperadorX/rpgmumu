@@ -1,0 +1,42 @@
+-- Banco de dados
+CREATE DATABASE MumuRPG;
+GO
+
+USE MumuRPG;
+GO
+
+-- Tabela Characters
+CREATE TABLE Characters (
+    CharID INT IDENTITY(1,1) NOT NULL,
+    PlayerID INT NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    Class VARCHAR(20) NOT NULL,
+    Level INT DEFAULT 1,
+    Exp INT DEFAULT 0,
+    HP INT DEFAULT 100,
+    CONSTRAINT PK_Characters PRIMARY KEY (CharID)
+);
+GO
+
+-- Tabela Items
+CREATE TABLE Items (
+    ItemID INT IDENTITY(1,1) NOT NULL,
+    CharID INT NOT NULL,
+    Name VARCHAR(50) NOT NULL,
+    EquippedSlot NVARCHAR(20) NULL,
+    CONSTRAINT PK_Items PRIMARY KEY (ItemID),
+    CONSTRAINT FK_Items_CharID FOREIGN KEY (CharID) REFERENCES Characters(CharID)
+);
+GO
+
+-- Tabela DungeonLog
+CREATE TABLE DungeonLog (
+    LogID INT IDENTITY(1,1) NOT NULL,
+    CharID INT NOT NULL,
+    XP INT NOT NULL,
+    Item VARCHAR(50) NOT NULL,
+    DateTime DATETIME DEFAULT GETDATE(),
+    CONSTRAINT PK_DungeonLog PRIMARY KEY (LogID),
+    CONSTRAINT FK_DungeonLog_CharID FOREIGN KEY (CharID) REFERENCES Characters(CharID)
+);
+GO
